@@ -7,10 +7,19 @@ var Odoo = require("odoo-xmlrpc");
 
 
 const app = express();
+var session = require('express-session');
+
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use(session({
+  secret: 'jaredasch',
+  cookie: { maxAge: 60 * 60 * 1000 },
+  saveUninitialized: false,
+  resave: false
+}))
 
 
 app.get('/login//:port/:database/:username/:password/', function(req, res){
@@ -33,6 +42,14 @@ app.get('/login//:port/:database/:username/:password/', function(req, res){
       res.status(200).send((result).toString());
     });
 });
+
+app.get('/get_session/', function(req, res){
+  var session_id = req.sessionID
+  console.log(session_id)
+  return res.send(session_id);    
+});
+
+
 
 
 app.post('/call_method/:port/:database/:username/:password/:modelname/:method', function(req, res){
