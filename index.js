@@ -44,9 +44,9 @@ app.get('/login//:port/:database/:username/:password/', function(req, res){
 });
 
 app.get('/get_session/', function(req, res){
-  var session_id = req.sessionID
-  console.log(session_id)
-  return res.send(session_id);    
+  var session_id = {sessionID: req.sessionID.toString()}
+  // console.log(session_id)
+  res.status(200).send(session_id); 
 });
 
 
