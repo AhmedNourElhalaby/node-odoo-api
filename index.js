@@ -61,7 +61,7 @@ app.post('/call_method/:port/:database/:username/:password/:modelname/:method', 
   var database = req.params.database
   var port = req.params.port
   var odoo = new Odoo({
-    url: "http://207.154.195.214",
+    url: "http://3.249.109.211",
     port: port,
     db: database,
     username: name,
