@@ -3,8 +3,8 @@ const bodyParser = require("body-parser");
 
 var cors = require('cors')
 var Odoo = require("odoo-xmlrpc");
-const axios = require('axios');
-const needle = require('needle');
+// const axios = require('axios');
+// const needle = require('needle');
 const fetch = require('node-fetch');
 
 
