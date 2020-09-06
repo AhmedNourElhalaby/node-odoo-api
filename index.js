@@ -61,7 +61,7 @@ app.get('/get_session/:amount/:payment', function (req, res) {
   var odoo = new Odoo({
     url: "http://3.249.109.211",
     port: 8069,
-    db: 'travel_agency',
+    db: 'odoo',
     username: 'online',
     password: 'online'
   });
@@ -218,20 +218,16 @@ app.get('/complete/:type/:mode', function (req, res) {
 
 
 
-app.post('/call_method/:port/:database/:username/:password/:modelname/:method', function (req, res) {
-  var name = req.params.username
-  var pass = req.params.password
+app.post('/call_method/:modelname/:method', function (req, res) {
   var modelname = req.params.modelname
   var method = req.params.method
   var params = req.body.paramlist
-  var database = req.params.database
-  var port = req.params.port
   var odoo = new Odoo({
     url: "http://3.249.109.211",
-    port: port,
-    db: database,
-    username: name,
-    password: pass
+    port: 8069,
+    db: 'odoo',
+    username: 'online',
+    password: 'online'
   });
 
   var new_params = JSON.parse(params);
