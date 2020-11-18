@@ -7,6 +7,8 @@ var Odoo = require("odoo-xmlrpc");
 // const needle = require('needle');
 const fetch = require('node-fetch');
 
+var fs = require('fs')
+var https = require('https')
 
 
 // var router = express.Router();
@@ -250,6 +252,13 @@ app.post('/call_method/:modelname/:method', function (req, res) {
   });
 });
 
-app.listen(4000, () => {
-  console.log('Express Server Started At Port: 4000')
+// app.listen(4000, () => {
+//   console.log('Express Server Started At Port: 4000')
+// })
+https.createServer({
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
+}, app)
+.listen(4000, function () {
+  console.log('Example app listening on port 4000! Go to https://localhost:4000/')
 })
