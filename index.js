@@ -7,8 +7,8 @@ var Odoo = require("odoo-xmlrpc");
 // const needle = require('needle');
 const fetch = require('node-fetch');
 
-var fs = require('fs')
-var https = require('https')
+// var fs = require('fs')
+// var https = require('https')
 
 
 // var router = express.Router();
@@ -31,6 +31,9 @@ app.use(cors());
 //   resave: false
 // }))
 
+app.get('', function (req, res) {
+     res.status(200).send("API IS WORKING");
+});
 
 app.get('/login//:port/:database/:username/:password/', function (req, res) {
   var name = req.params.username
@@ -38,7 +41,7 @@ app.get('/login//:port/:database/:username/:password/', function (req, res) {
   var database = req.params.database
   var port = req.params.port
   var odoo = new Odoo({
-    url: "http://3.249.109.211",
+    url: "https://online.aropeegypt.com.eg",
     port: port,
     db: database,
     username: name,
@@ -61,7 +64,7 @@ app.get('/login//:port/:database/:username/:password/', function (req, res) {
 app.get('/get_session/:amount/:payment', function (req, res) {
   var amount = req.params.amount
   var odoo = new Odoo({
-    url: "http://3.249.109.211",
+    url: "https://online.aropeegypt.com.eg",
     port: 8069,
     db: 'odoo',
     username: 'online',
@@ -225,7 +228,7 @@ app.post('/call_method/:modelname/:method', function (req, res) {
   var method = req.params.method
   var params = req.body.paramlist
   var odoo = new Odoo({
-    url: "http://3.249.109.211",
+    url: "https://online.aropeegypt.com.eg",
     port: 8069,
     db: 'odoo',
     username: 'online',
@@ -252,13 +255,13 @@ app.post('/call_method/:modelname/:method', function (req, res) {
   });
 });
 
-// app.listen(4000, () => {
-//   console.log('Express Server Started At Port: 4000')
-// })
-https.createServer({
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.cert')
-}, app)
-.listen(4000, function () {
-  console.log('Example app listening on port 4000! Go to https://localhost:4000/')
+app.listen(4000, () => {
+  console.log('Express Server Started At Port: 4000')
 })
+// https.createServer({
+ //  key: fs.readFileSync('server.key'),
+  // cert: fs.readFileSync('server.cert')
+// }, app)
+// .listen(4000, function () {
+  // console.log('Example app listening on port 4000! Go to https://localhost:4000/')
+// })
