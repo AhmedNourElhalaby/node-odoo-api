@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cors());
 /* for HR API  */
-//app.use('/api', require('./routes/api'));
+app.use('/hr', require('./routes/api'));
 // app.use(session({
 //   secret: 'jaredasch',
 //   cookie: { maxAge: 60 * 60 * 1000 },
@@ -33,7 +33,7 @@ app.use(cors());
 // }))
 
 app.get('', function (req, res) {
-     res.status(200).send("API IS WORKING");
+  res.status(200).send("API IS WORKING");
 });
 
 app.get('/login//:port/:database/:username/:password/', function (req, res) {
@@ -127,13 +127,13 @@ app.get('/get_session/:amount/:payment', function (req, res) {
         }
 
         fetch(url, {
-            method: 'POST',
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: urlencoded,
-            redirect: 'follow'
-          })
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: urlencoded,
+          redirect: 'follow'
+        })
           .then(response => response.text())
           .then(result => {
             let searchIndex = result.indexOf('SESSION');
