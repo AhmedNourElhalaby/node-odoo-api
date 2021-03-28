@@ -6,7 +6,7 @@ const odoo_xmlrpc = require("odoo-xmlrpc");
 //secret key
 const secret_key = 'nour';
 
-router.get('/', (req, res)=> {
+router.get('/api', (req, res)=> {
     res.send({
         message: 'well done'
         
