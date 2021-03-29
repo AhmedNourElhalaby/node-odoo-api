@@ -126,7 +126,7 @@ app.get('/get_session/:amount/:payment', function (req, res) {
           urlencoded.append("order.currency", "EGP");
         }
         var auth = 'Basic ' + Buffer.from("merchant.AROPEEGYPT" + ':' + "8ad89799c04da4434e0d217b317b5ac7").toString('base64');
-
+        console.log(auth)
         fetch(url, {
           method: 'POST',
           headers: {
