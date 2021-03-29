@@ -117,13 +117,24 @@ app.get('/get_session/:amount/:payment', function (req, res) {
           urlencoded = new URLSearchParams();
           url = "https://nbe.gateway.mastercard.com/api/rest/version/59/merchant/AROPEEGYPT/session"
           urlencoded.append("apiOperation", "CREATE_CHECKOUT_SESSION");
-         /*  urlencoded.append("apiPassword", "8ad89799c04da4434e0d217b317b5ac7");
-          urlencoded.append("apiUsername", "merchant.AROPEEGYPT"); */
+          /*  urlencoded.append("apiPassword", "8ad89799c04da4434e0d217b317b5ac7");
+           urlencoded.append("apiUsername", "merchant.AROPEEGYPT"); */
           /* urlencoded.append("merchant", "AROPEEGYPT"); */
           urlencoded.append("interaction.operation", "PURCHASE");
           urlencoded.append("order.id", orderID);
           urlencoded.append("order.amount", amount);
           urlencoded.append("order.currency", "EGP");
+          var bodyObject = {
+            "apiOperation": "CREATE_CHECKOUT_SESSION",
+            "interaction": {
+              "operation": "PURCHASE",
+            },
+            "order": {
+              "currency": "EGP",
+              "id": orderID,
+              "amount": amount
+            }
+          }
         }
         var auth = 'Basic ' + Buffer.from("merchant.AROPEEGYPT" + ':' + "8ad89799c04da4434e0d217b317b5ac7").toString('base64');
         console.log(auth)
@@ -134,7 +145,7 @@ app.get('/get_session/:amount/:payment', function (req, res) {
             "Content-Type": "application/x-www-form-urlencoded",
             "Authorization": auth
           },
-          body: urlencoded,
+          body: bodyObject,
           redirect: 'follow'
         })
           .then(response => response.text())
