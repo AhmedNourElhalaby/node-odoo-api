@@ -136,6 +136,7 @@ app.get('/get_session/:amount/:payment', function (req, res) {
         })
           .then(response => response.text())
           .then(result => {
+            console.log(result)
             let searchIndex = result.indexOf('SESSION');
             let searchSubStr = result.substr(searchIndex, 31);
             console.log('session string', searchSubStr);
