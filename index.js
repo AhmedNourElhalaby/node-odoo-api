@@ -125,11 +125,13 @@ app.get('/get_session/:amount/:payment', function (req, res) {
           urlencoded.append("order.amount", amount);
           urlencoded.append("order.currency", "EGP");
         }
+        var auth = 'Basic ' + Buffer.from("merchant.AROPEEGYPT" + ':' + "8ad89799c04da4434e0d217b317b5ac7").toString('base64');
 
         fetch(url, {
           method: 'POST',
           headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": auth
           },
           body: urlencoded,
           redirect: 'follow'
