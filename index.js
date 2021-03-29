@@ -127,6 +127,7 @@ app.get('/get_session/:amount/:payment', function (req, res) {
         }
         var auth = 'Basic ' + Buffer.from("merchant.AROPEEGYPT" + ':' + "8ad89799c04da4434e0d217b317b5ac7").toString('base64');
         console.log(auth)
+        console.log(urlencoded)
         fetch(url, {
           method: 'POST',
           headers: {
