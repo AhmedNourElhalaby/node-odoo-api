@@ -115,11 +115,11 @@ app.get('/get_session/:amount/:payment', function (req, res) {
           urlencoded.append("order.currency", "EGP");
         } else if (req.params.payment == "nbe") {
           urlencoded = new URLSearchParams();
-          url = "https://nbe.gateway.mastercard.com/api/nvp/version/57"
+          url = "https://nbe.gateway.mastercard.com/api/rest/version/59/merchant/AROPEEGYPT/session"
           urlencoded.append("apiOperation", "CREATE_CHECKOUT_SESSION");
-          urlencoded.append("apiPassword", "804fac154e7ef329c550072d9fd1343e");
-          urlencoded.append("apiUsername", "merchant.TESTNBETEST");
-          urlencoded.append("merchant", "TESTNBETEST");
+          urlencoded.append("apiPassword", "8ad89799c04da4434e0d217b317b5ac7");
+          urlencoded.append("apiUsername", "merchant.AROPEEGYPT");
+          urlencoded.append("merchant", "AROPEEGYPT");
           urlencoded.append("interaction.operation", "PURCHASE");
           urlencoded.append("order.id", orderID);
           urlencoded.append("order.amount", amount);
