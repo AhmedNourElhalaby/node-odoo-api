@@ -117,9 +117,9 @@ app.get('/get_session/:amount/:payment', function (req, res) {
           urlencoded = new URLSearchParams();
           url = "https://nbe.gateway.mastercard.com/api/rest/version/59/merchant/AROPEEGYPT/session"
           urlencoded.append("apiOperation", "CREATE_CHECKOUT_SESSION");
-          urlencoded.append("apiPassword", "8ad89799c04da4434e0d217b317b5ac7");
-          urlencoded.append("apiUsername", "merchant.AROPEEGYPT");
-          urlencoded.append("merchant", "AROPEEGYPT");
+         /*  urlencoded.append("apiPassword", "8ad89799c04da4434e0d217b317b5ac7");
+          urlencoded.append("apiUsername", "merchant.AROPEEGYPT"); */
+          /* urlencoded.append("merchant", "AROPEEGYPT"); */
           urlencoded.append("interaction.operation", "PURCHASE");
           urlencoded.append("order.id", orderID);
           urlencoded.append("order.amount", amount);
