@@ -138,14 +138,14 @@ app.get('/get_session/:amount/:payment', function (req, res) {
         }
         var auth = 'Basic ' + Buffer.from("merchant.AROPEEGYPT" + ':' + "8ad89799c04da4434e0d217b317b5ac7").toString('base64');
         console.log(auth)
-        console.log(urlencoded)
+        console.log(bodyObject)
         fetch(url, {
           method: 'POST',
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
             "Authorization": auth
           },
-          body: bodyObject,
+          bodyObject,
           redirect: 'follow'
         })
           .then(response => response.text())
