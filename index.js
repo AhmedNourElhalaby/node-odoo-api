@@ -62,8 +62,9 @@ app.get('/login//:port/:database/:username/:password/', function (req, res) {
     if payment = nbe return nbe requirements (sessionId,OrderId)
     if payment = fawry return fawry requirements (OrderId)
 */
-app.get('/get_session/:amount/:payment', function (req, res) {
+app.get('/get_session/:amount/:payment/:installment_period', function (req, res) {
   var amount = req.params.amount
+  var installment_period=res.params.installment_period
   var odoo = new Odoo({
     url: "https://online.aropeegypt.com.eg",
     port: 8069,
@@ -114,6 +115,10 @@ app.get('/get_session/:amount/:payment', function (req, res) {
           urlencoded.append("order.amount", amount);
           urlencoded.append("order.currency", "EGP");
         } else if (req.params.payment == "nbe") {
+          var auth
+          if(installment_period==0){
+            auth = 'Basic ' + Buffer.from("merchant.AROPEEGYPT" + ':' + "8ad89799c04da4434e0d217b317b5ac7").toString('base64');
+          }
           urlencoded = new URLSearchParams();
           url = "https://nbe.gateway.mastercard.com/api/rest/version/59/merchant/AROPEEGYPT/session"
           urlencoded.append("apiOperation", "CREATE_CHECKOUT_SESSION");
@@ -136,7 +141,7 @@ app.get('/get_session/:amount/:payment', function (req, res) {
             }
           }
         }
-        var auth = 'Basic ' + Buffer.from("merchant.AROPEEGYPT" + ':' + "8ad89799c04da4434e0d217b317b5ac7").toString('base64');
+        
         console.log(auth)
         console.log(bodyObject)
         fetch(url, {
