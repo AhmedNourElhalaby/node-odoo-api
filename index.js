@@ -64,7 +64,7 @@ app.get('/login//:port/:database/:username/:password/', function (req, res) {
 */
 app.get('/get_session/:amount/:payment/:installment_period', function (req, res) {
   var amount = req.params.amount
-  var installment_period=res.params.installment_period
+  var installment_period=req.params.installment_period
   var odoo = new Odoo({
     url: "https://online.aropeegypt.com.eg",
     port: 8069,
