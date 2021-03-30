@@ -115,7 +115,7 @@ app.get('/get_session/:amount/:payment/:installment_period', function (req, res)
           urlencoded.append("order.amount", amount);
           urlencoded.append("order.currency", "EGP");
         } else if (req.params.payment == "nbe") {
-          var auth
+          var auth,merchant
           /* 
             0  => cash payment
             6  => installment period 6 Month
@@ -124,23 +124,29 @@ app.get('/get_session/:amount/:payment/:installment_period', function (req, res)
             12 => installment period 12 Month
 
           */
+         console.log(installment_period)
           if (installment_period == 0) {
+            merchant="AROPEEGYPT"
             auth = 'Basic ' + Buffer.from("merchant.AROPEEGYPT" + ':' + "8ad89799c04da4434e0d217b317b5ac7").toString('base64');
           }
           if (installment_period == 6) {
+            merchant="INAROPE00006"
             auth = 'Basic ' + Buffer.from("merchant.INAROPE00006" + ':' + "5a5a8bec141c5c89188bd0778b5e9699").toString('base64');
           }
           if (installment_period == 9) {
+            merchant="INAROPE00009"
             auth = 'Basic ' + Buffer.from("merchant.INAROPE00009" + ':' + "76f6d8f6339746eca792bcf0fd612330").toString('base64');
           }
           if (installment_period == 10) {
+            merchant="INAROPE00010"
             auth = 'Basic ' + Buffer.from("merchant.INAROPE00010" + ':' + "c5ff1f7bc2a9bc410af84016b41070e4").toString('base64');
           }
           if (installment_period == 12) {
+            merchant="INAROPE00012"
             auth = 'Basic ' + Buffer.from("merchant.INAROPE00012" + ':' + "845115f60dd4834573cc382624fbb7a0").toString('base64');
           }
           urlencoded = new URLSearchParams();
-          url = "https://nbe.gateway.mastercard.com/api/rest/version/59/merchant/AROPEEGYPT/session"
+          url = `https://nbe.gateway.mastercard.com/api/rest/version/59/merchant/${merchant}/session`
           urlencoded.append("apiOperation", "CREATE_CHECKOUT_SESSION");
           /*  urlencoded.append("apiPassword", "8ad89799c04da4434e0d217b317b5ac7");
            urlencoded.append("apiUsername", "merchant.AROPEEGYPT"); */
